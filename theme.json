@@ -3,11 +3,12 @@
   "version": 2,
   "settings": {
     "color": {
-      "palette": [{
-        "slug": "primary",
-        "color": "#40ADAD",
-        "name": "Primary"
-      },
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#40ADAD",
+          "name": "Primary"
+        },
         {
           "slug": "colour1",
           "color": "#0D6575",
@@ -36,81 +37,19 @@
       ]
     },
     "typography": {
-      "fontFamilies": [{
-        "fontFamily": "\"brightwallregular\"",
-        "name": "brightwallregular",
-        "slug": "brightwallregular",
-        "fontFace": [{
-          "fontFamily": "brightwallregular",
-          "fontStretch": "normal",
-          "fontStyle": "normal",
-          "fontWeight": "normal",
-          "src": [
-            "file:./assets/css/fonts/brightwall_regular-webfont.woff2"
-          ]
-        }]
-      },
+      "fontFamilies": [
         {
-          "fontFamily": "\"Montserrat\"",
-          "name": "Montserrat",
-          "slug": "Montserrat",
-          "fontFace": [{
-            "fontFamily": "Montserrat",
-            "fontStretch": "normal",
-            "fontStyle": "normal",
-            "fontWeight": "100",
-            "src": [
-              "file:./assets/css/fonts/montserrat-v25-latin/montserrat-v25-latin-100.woff2"
-            ]
-          }, {
-            "fontFamily": "Montserrat",
-            "fontStretch": "normal",
-            "fontStyle": "normal",
-            "fontWeight": "300",
-            "src": [
-              "file:./assets/css/fonts/montserrat-v25-latin/montserrat-v25-latin-300.woff2"
-            ]
-          },
+          "fontFamily": "\"brightwallregular\"",
+          "name": "brightwallregular",
+          "slug": "brightwallregular",
+          "fontFace": [
             {
-              "fontFamily": "Montserrat",
+              "fontFamily": "brightwallregular",
               "fontStretch": "normal",
               "fontStyle": "normal",
-              "fontWeight": "400",
+              "fontWeight": "normal",
               "src": [
-                "file:./assets/css/fonts/montserrat-v25-latin/montserrat-v25-latin-400.woff2"
-              ]
-            }
-          ]
-        },
-        {
-          "fontFamily": "\"Oswald\"",
-          "name": "Oswald",
-          "slug": "Oswald",
-          "fontFace": [{
-            "fontFamily": "Oswald",
-            "fontStretch": "normal",
-            "fontStyle": "normal",
-            "fontWeight": "200",
-            "src": [
-              "file:./assets/css/fonts/oswald-v49-latin/oswald-v49-latin-200.woff2"
-            ]
-          },
-            {
-              "fontFamily": "Oswald",
-              "fontStretch": "normal",
-              "fontStyle": "normal",
-              "fontWeight": "300",
-              "src": [
-                "file:./assets/css/fonts/oswald-v49-latin/oswald-v49-latin-300.woff2"
-              ]
-            },
-            {
-              "fontFamily": "Oswald",
-              "fontStretch": "normal",
-              "fontStyle": "normal",
-              "fontWeight": "400",
-              "src": [
-                "file:./assets/css/fonts/oswald-v49-latin/oswald-v49-latin-400.woff2"
+                "file:./assets/css/fonts/brightwall_regular-webfont.woff2"
               ]
             }
           ]

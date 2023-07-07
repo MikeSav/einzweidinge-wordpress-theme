@@ -1092,6 +1092,12 @@ li::marker {
     }
 }
 
+/* putting this guy here perhaps he will win ?*/
+.remove-bg-img {
+    background: none !important;
+    background-image: none !important;
+}
+
 /* animations */
 @keyframes imgFade {
     0% {
