@@ -48,6 +48,7 @@
                     </ul>
                 </div>
             </div>
+            <address>Prenzlauer Berg, 10439 Berlin</address>
             <div class="footer__copy">
                 &copy; <?php echo date("Y"); ?>
             </div>
