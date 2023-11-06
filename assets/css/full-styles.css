@@ -382,6 +382,7 @@ li::marker {
     background: url('./css-images/blog/blog1.jpg');
     background-size: cover;
     border-radius: 5px 5px 0 0;
+    cursor: pointer;
 }
 
 .blog__card__img__photo {
@@ -944,6 +945,32 @@ li::marker {
     color: #FFFFFF;
 }
 
+/* new blog block common css */
+.blog-article-section {
+    display: flex;
+    justify-content: center;
+}
+
+.blog-article-section__wrapper {
+    width: var(--max-width);
+    max-width: var(--max-width);
+    /* display: flex; */
+    margin: 0 1.5rem;
+}
+
+.blog-article__header__heading--block {
+    padding: 3.125rem 0;
+}
+
+.blog-article-section--bottom {
+    margin: 0 1.5rem;
+    padding-bottom: 3.125rem;
+}
+
+.footer__certificate {
+    width: 230px;
+}
+
 /* breakpoints */
 @media only screen and (max-width: 1020px) {
 
@@ -1049,6 +1076,10 @@ li::marker {
 
     .footer__certificates {
         flex-direction: column-reverse;
+    }
+
+    .footer__certificate {
+        width: 230px;
     }
 
     .contact__types {

@@ -113,3 +113,7 @@ function closeCookiePopup(event) {
     document.getElementById('cookieCard').style.display = 'none';
 }
 
+// silly click nav thing
+function goToBlogPost(url) {
+    document.location.href = url;
+}

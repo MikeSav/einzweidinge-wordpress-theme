@@ -8,11 +8,11 @@
                 alt="einzweidinge logo">
             </div>
             <div class="footer__certificates">
-                <!--img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/certificates/ordnungs-welt-certificate-1.png"-->
 				<a href="https://ordnungswelt.com/Ordnungsexperten/jasmin-seikowsky" target="_blank">
-                	<img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/certificates/ordnungs-welt-certificate-2.png"
-                	alt="ordnungswelt Zertifikat">
-				</a>
+                    <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/certificates/banner_expertin-ordnungswelt_web.webp"
+                    alt="ordnungswelt Zertifikat"
+                    class="footer__certificate">
+                </a>
             </div>
         </div>
         <div class="footer__row">

@@ -58,6 +58,16 @@ add_filter( 'block_categories_all' , function( $categories ) {
 	return $categories;
 } );
 
+// stick a div with blog-article class around a classic
+add_filter( 'render_block', 'wrap_classic_block', 10, 2 );
+
+function wrap_classic_block( $block_content, $block ) {
+  if ( null === $block['blockName'] && ! empty( $block_content ) && ! ctype_space( $block_content ) ) {
+    $block_content = '<div class="blog-article-section"><div class="blog-article-section__wrapper">' . $block_content . '</div></div>';
+  }
+  return $block_content;
+}
+
 
 function add_additional_class_on_a($classes, $item, $args) {
     if (isset($args->add_a_class)) {
@@ -70,7 +80,7 @@ add_filter('nav_menu_link_attributes', 'add_additional_class_on_a', 1, 3);
 
 add_filter( 'should_load_separate_core_block_assets', '__return_true' );
 
-//Disable emojis in WordPress
+// Disable emojis in WordPress
 add_action( 'init', 'smartwp_disable_emojis' );
 
 function smartwp_disable_emojis() {

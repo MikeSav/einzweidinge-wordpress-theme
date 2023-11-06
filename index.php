@@ -57,7 +57,7 @@
                         <a href="<?php the_permalink();?>" class="button-link">weiter lesen</a>
                     </div>
                 </div>
-                <div class="blog__card__img" style="background-image: url('<?php the_post_thumbnail_url(); ?>')">
+                <div class="blog__card__img" style="background-image: url('<?php the_post_thumbnail_url(); ?>')" onClick="goToBlogPost('<?php the_permalink();?>')">
                 </div>
             </div>
         <?php
