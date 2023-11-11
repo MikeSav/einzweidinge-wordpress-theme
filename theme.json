@@ -49,7 +49,7 @@
               "fontStyle": "normal",
               "fontWeight": "normal",
               "src": [
-                "file:./assets/css/fonts/brightwall_regular-webfont.woff2"
+                "file:./assets/css/fonts/brightwall_regular.woff2"
               ]
             }
           ]
