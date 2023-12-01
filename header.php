@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html <?php echo get_language_attributes() ?>>
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HCSY6F9GQ"></script>
@@ -7,7 +7,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-9HCSY6F9GQ');
     </script>
     <!-- Google Tag Manager -->

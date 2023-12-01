@@ -1,15 +1,19 @@
 /* add nav style on scroll */
 document.addEventListener('DOMContentLoaded', () => {
-    let observer = new IntersectionObserver(function (entries) {
-        if (!entries[0].isIntersecting) {
+
+    window.onscroll = () => {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
             document.querySelector('.top-nav').classList.add('top-nav--bg');
             document.querySelector('.top-nav__logo').classList.add('top-nav__logo--shrink');
         } else {
             document.querySelector('.top-nav').classList.remove('top-nav--bg');
             document.querySelector('.top-nav__logo').classList.remove('top-nav__logo--shrink');
         }
-    }, { threshold: [0.01] });
-    observer.observe(document.querySelector('.intro') || document.querySelector('.page-intro') || document.querySelector('.four-oh-four'));
+    }
 
     /* Now the cookie stuff */
     let cookieConsent = getCookie('user_cookie_consent');
@@ -18,14 +22,37 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         document.getElementById('cookieCard').style.display = 'none';
     }
-});
 
-/**
- * Experiment Code To Lazy Load CSS BG Images
- */
-document.addEventListener('DOMContentLoaded', () => {
-    const cssClasses = '.blog-article__image, .blog__card__img, .services__card__top, .services__card__top--kleiderschrank, .services__card__top--homeoffice, .services__card__top--umzug, .questions__overview__icon, .angebot__list__img, .angebot--kleidershrank .angebot__list__img, .angebot--homeoffice .angebot__list__img, .angebot--umzug .angebot__list__img, .angebot--umzug .angebot__list__img, .services__row--erstgespraech .services__row__visual, .services__row__visual, .services__row--design .services__row__visual, .uber-mich__list__img--book, .uber-mich__list__img.uber-mich__list__img--book';
-    let lazyBackgrounds = [].slice.call(document.querySelectorAll(cssClasses));
+    /**
+     * Experiment Code To Lazy Load CSS BG Images
+     */
+    let cssList = [
+        '.blog-article__image,',
+        '.blog__card__img,',
+        '.services__card__top,',
+        '.services__card__top--kleiderschrank,',
+        '.services__card__top--homeoffice,',
+        '.services__card__top--umzug,',
+        '.questions__overview__icon,',
+        '.angebot__list__img,',
+        '.angebot--kleidershrank',
+        '.angebot__list__img,',
+        '.angebot--homeoffice',
+        '.angebot__list__img,',
+        '.angebot--umzug',
+        '.angebot__list__img,',
+        '.angebot--umzug',
+        '.angebot__list__img,',
+        '.services__row--erstgespraech',
+        '.services__row__visual,',
+        '.services__row__visual,',
+        '.services__row--design',
+        '.services__row__visual,',
+        '.uber-mich__list__img--book,',
+        '.uber-mich__list__img.uber-mich__list__img--book'
+    ];
+
+    let lazyBackgrounds = [].slice.call(document.querySelectorAll(cssList.join(' ')));
 
     // now set the background image prop to none
     lazyBackgrounds.forEach((entry) => {
@@ -34,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if ('IntersectionObserver' in window) {
-        let lazyBackgroundObserver = new IntersectionObserver( (entries, observer) => {
+        let lazyBackgroundObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.remove('remove-bg-img');

@@ -37,34 +37,31 @@
           <div class="blog__header">
               <h2 class="blog__header__heading">Blog Artikel</h2>
           </div>
-
-      <div class="blog__row blog__row--wrap">
-        <?php
-          if (have_posts()) {
-              while(have_posts()) {
-          ?>
-
-
-            <div class="blog__card blog__card--wrap">
-                <?php the_post(); ?>
-                <div class="blog__card__details">
-                    <div class="blog__card__details__header"><?php the_title(); ?></div>
-                    <div class="blog__card__details__teaser">
-                       <?php the_excerpt(); ?>
+          <div class="blog__row blog__row--wrap">
+            <?php
+              if (have_posts()) {
+                  while(have_posts()) {
+              ?>
+                <div class="blog__card blog__card--wrap">
+                    <?php the_post(); ?>
+                    <div class="blog__card__details">
+                        <div class="blog__card__details__header"><?php the_title(); ?></div>
+                        <div class="blog__card__details__teaser">
+                           <?php the_excerpt(); ?>
+                        </div>
+                        <div class="blog__card__details__date"><?php the_date('d/m/Y'); ?></div>
+                        <div class="blog__card__details__control">
+                            <a href="<?php the_permalink();?>" class="button-link">weiter lesen</a>
+                        </div>
                     </div>
-                    <div class="blog__card__details__date"><?php the_date('d/m/Y'); ?></div>
-                    <div class="blog__card__details__control">
-                        <a href="<?php the_permalink();?>" class="button-link">weiter lesen</a>
+                    <div class="blog__card__img" style="background-image: url('<?php the_post_thumbnail_url(); ?>')" onClick="goToBlogPost('<?php the_permalink();?>')">
                     </div>
                 </div>
-                <div class="blog__card__img" style="background-image: url('<?php the_post_thumbnail_url(); ?>')" onClick="goToBlogPost('<?php the_permalink();?>')">
-                </div>
-            </div>
-        <?php
+            <?php
+                  }
               }
-          }
-        ?>
-        </div>
+            ?>
+          </div>
     </div>
 </div>
 <?php get_footer(); ?>

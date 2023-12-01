@@ -535,6 +535,17 @@ li::marker {
     border-top: 5px solid #FFFFFF;
 }
 
+.contact-link {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.contact-link:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+
 /* blog articles */
 .blog-article {
     color: var(--header-primary);
@@ -972,6 +983,10 @@ li::marker {
     width: 230px;
 }
 
+.footer__certificate--jj {
+    height: 115px;
+}
+
 /* breakpoints */
 @media only screen and (max-width: 1020px) {
 
@@ -1085,6 +1100,10 @@ li::marker {
 
     .footer__certificate {
         width: 230px;
+    }
+
+    .footer__certificate--jj {
+        height: 115px;
     }
 
     .contact__types {

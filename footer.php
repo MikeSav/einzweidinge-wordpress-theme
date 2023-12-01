@@ -5,13 +5,23 @@
             <div>
                 <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/logos/ein-zwei-dinge.svg"
                 class="footer__logo"
-                alt="einzweidinge logo">
+                alt="einzweidinge logo"
+                loading="lazy">
             </div>
             <div class="footer__certificates">
+            <!-- jj -->
+            <a href="https://jjtrainings.de/finde-einen-aufraeumcoach-in-deiner-naehe/" target="_blank">
+                <img src="https://einzweidinge.de/wp-content/uploads/2023/11/jj-training-zertifikat.webp"
+                alt="JJ Trainings Zertifikat"
+                class="footer__certificate--jj"
+                loading="lazy">
+            </a>
+            <!-- Ordnungswelt -->
 				<a href="https://ordnungswelt.com/Ordnungsexperten/jasmin-seikowsky" target="_blank">
                     <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/certificates/banner_expertin-ordnungswelt_web.webp"
-                    alt="ordnungswelt Zertifikat"
-                    class="footer__certificate">
+                    alt="Ordnungswelt Zertifikat"
+                    class="footer__certificate"
+                    loading="lazy">
                 </a>
             </div>
         </div>
