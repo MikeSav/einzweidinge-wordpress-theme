@@ -120,6 +120,10 @@ li::marker {
     font-size: 1.5em;
 }
 
+ol li::marker {
+    color: var(--color2);
+    font-size: 1em;
+}
 
 /* need to add body class due to wordpress not liking reset */
 .body {
@@ -450,6 +454,11 @@ li::marker {
 
 .footer__logo {
     max-height: 150px;
+}
+
+.footer__copy {
+    margin-left: 0.6rem;
+    margin-top: 0.5rem;
 }
 
 .footer__certificates {
@@ -999,7 +1008,7 @@ li::marker {
     }
 
     .blog__card__details__header {
-     min-height: unset;
+        min-height: unset;
     }
 
     .clean-up__description {
@@ -1029,9 +1038,6 @@ li::marker {
         margin: 0.5rem 0 0;
     }
 
-    .footer__copy {
-        margin-top: 0.5rem;
-    }
 
     .blog-article ul {
         padding: 0 1rem;
@@ -1072,6 +1078,12 @@ li::marker {
 
     .footer__logo {
         margin-bottom: 1rem;
+    }
+
+    .footer__copy {
+        margin-top: 0.5rem;
+        margin-left: 0;
+        text-align: center;
     }
 
     .intro__strap {
@@ -1193,22 +1205,3 @@ li::marker {
         background-position: 0% 50%;
     }
 }
-
-/*
-.top-nav__wrapper__links__list li {
-	margin-bottom: 0;
-}
-
-
-
-@media only screen and (max-width: 1020px) {
-
-	.blog__card__details__teaser {
-		height: unset;
-	}
-
-	.blog__card--wrap {
-	 	flex: unset
-	}
-}
- */

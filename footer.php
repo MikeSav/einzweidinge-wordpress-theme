@@ -23,6 +23,13 @@
                     class="footer__certificate"
                     loading="lazy">
                 </a>
+				<!-- https://betidy.io/ -->
+				<a href="https://betidy.io/"  target="_blank">
+				 	<img src="https://einzweidinge.de/wp-content/uploads/2023/12/betidy_logo_quer_rosa.png"
+                   	 	alt="betidy.io"
+                    	class="footer__certificate"
+                    	loading="lazy">
+				</a>
             </div>
         </div>
         <div class="footer__row">
@@ -59,10 +66,14 @@
                 </div>
             </div>
             <address>Prenzlauer Berg, 10439 Berlin</address>
-            <div class="footer__copy">
-                &copy; <?php echo date("Y"); ?>
-            </div>
+
         </div>
+
+		<div class="footer__row">
+			<div class="footer__copy">
+                &copy; Jasmin Seikowsky - Ordnungscoach - <?php echo date("Y"); ?>
+            </div>
+		 </div>
     </div>
 </div>
 
@@ -84,4 +95,3 @@
 <?php wp_footer(); ?>
 </body>
 </html>
-
