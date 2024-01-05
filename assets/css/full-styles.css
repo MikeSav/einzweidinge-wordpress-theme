@@ -583,7 +583,7 @@ ol li::marker {
     color: #FFFFFF;
 }
 
-.blog-article__content, einzweidinge-header-and-text__content {
+.blog-article__content, .einzweidinge-header-and-text__content {
     line-height: 1.5rem;
 }
 
@@ -975,8 +975,11 @@ ol li::marker {
 .blog-article-section__wrapper {
     width: var(--max-width);
     max-width: var(--max-width);
-    /* display: flex; */
     margin: 0 1.5rem;
+}
+
+.blog-article-section__wrapper p {
+    line-height: 1.5rem;
 }
 
 .blog-article__header__heading--block {
@@ -1158,6 +1161,21 @@ ol li::marker {
         flex: unset;
     }
 }
+
+@media only screen and (min-width: 710px) and (max-width: 1020px) {
+    .blog__row, .clean-up__why__cards__row {
+        flex-direction: row;
+    }
+
+    .blog__card__details__header {
+        min-height: 47px;
+    }
+
+    .blog__card__details__teaser {
+        height: 180px;
+    }
+}
+
 
 /* putting this guy here perhaps he will win ?*/
 .remove-bg-img {

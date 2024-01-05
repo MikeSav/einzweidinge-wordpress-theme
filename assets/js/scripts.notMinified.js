@@ -1,4 +1,4 @@
-/* add nav style on scroll */
+// add nav style on scroll
 document.addEventListener('DOMContentLoaded', () => {
 
     window.onscroll = () => {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /* Now the cookie stuff */
+    // Now the cookie stuff
     let cookieConsent = getCookie('user_cookie_consent');
     if (cookieConsent === '') {
         document.getElementById('cookieCard').style.display = 'block';
@@ -23,9 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('cookieCard').style.display = 'none';
     }
 
-    /**
-     * Experiment Code To Lazy Load CSS BG Images
-     */
+    // Experiment Code To Lazy Load CSS BG Images
     let cssList = [
         '.blog-article__image,',
         '.blog__card__img,',
@@ -77,9 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/**
- * Show and hide the hamburger menu
- */
+//Show and hide the hamburger menu
 function showHamburgerMenu() {
     document.getElementsByTagName('body')[0].classList.add('body__no-scroll');
     let overlay = document.querySelector('.ham-menu');
