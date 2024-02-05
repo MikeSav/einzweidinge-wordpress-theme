@@ -122,6 +122,7 @@ function add_support() {
     add_theme_support('custom-logo');
     add_theme_support('editor-styles');
     add_editor_style(get_template_directory_uri() . '/assets/css/style.css');
+
 }
 
 add_action('after_setup_theme', 'add_support');
@@ -133,6 +134,23 @@ wp_register_style('einzweidingeRandom', plugin_dir_url(__FILE__) . '/assets/css/
 );
 
 wp_enqueue_style('einzweidingeRandom');
+
+/**
+ * Load Google Fonts into Editor
+ */
+function add_google_fonts() {
+wp_enqueue_style( 'add_google_fonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&family=Oswald:wght@200;300;400&display=swap', false );}
+
+// add_action( 'wp_enqueue_scripts', 'add_google_fonts' );
+
+function child_editor_styles() {
+    add_theme_support( 'editor-styles' );
+	add_editor_style( [
+		get_template_directory_uri() . '/assets/css/style.css',
+	] );
+}
+
+// add_action( 'admin_init', 'child_editor_styles' );
 
 /**
  * Modify language attributes for specific pages and posts.
