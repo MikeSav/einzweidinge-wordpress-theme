@@ -38,6 +38,14 @@
               <h2 class="blog__header__heading">Blog Artikel</h2>
           </div>
           <div class="blog__row blog__row--wrap">
+            In regelmäßigen Abständen findest du hier neue Blog Artikel zu Themen wie Ausmisten, Ordnung und Struktur zu Hause schaffen, Ordnungshelfer, Interior Design und mehr.
+            Setze dir ein Lesezeichen für diese Seite, um keinen neuen Artikel zu verpassen.
+            <br><br>
+            Wenn du eigene Vorschläge für Themen hast, die dich interessieren, dann schreib mir gern über das Kontaktformular.
+            <br><br>
+            Viel Spass beim Lesen!
+          </div>
+          <div class="blog__row blog__row--wrap">
             <?php
               if (have_posts()) {
                   while(have_posts()) {
