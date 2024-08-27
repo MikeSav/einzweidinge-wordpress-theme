@@ -234,6 +234,7 @@ ol li::marker {
 .ham-menu__items__list li {
     display: flex;
     justify-content: center;
+    margin-left: 0;
 }
 
 .ham-menu__items__social-list li {
@@ -365,6 +366,11 @@ ol li::marker {
     flex-wrap: wrap;
 }
 
+.blog__row--intro {
+    line-height: 1.5rem;
+    margin: 2rem 0;
+}
+
 .blog__card {
     display: flex;
     flex-direction: column-reverse;
@@ -375,6 +381,7 @@ ol li::marker {
 
 .blog__card--wrap {
     flex: 1 1 30%;
+    max-width: 307px;
 }
 
 .blog__card__img {
@@ -430,6 +437,8 @@ ol li::marker {
 
 .blog__card__details__control {
     text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .footer {
@@ -850,6 +859,10 @@ ol li::marker {
     text-transform: uppercase;
 }
 
+.services__card__details__control {
+    margin-bottom: 1.25rem;
+}
+
 /* WP Forms classes */
 .wpforms-container {
     display: flex;
@@ -1010,6 +1023,10 @@ ol li::marker {
         flex-direction: column;
     }
 
+    .blog__card--wrap {
+       max-width: unset;
+    }
+
     .blog__card__details__header {
         min-height: unset;
     }
@@ -1159,6 +1176,7 @@ ol li::marker {
 
     .blog__card--wrap {
         flex: unset;
+        max-width: unset;
     }
 }
 
@@ -1174,6 +1192,7 @@ ol li::marker {
     .blog__card__details__teaser {
         height: 180px;
     }
+
 }
 
 

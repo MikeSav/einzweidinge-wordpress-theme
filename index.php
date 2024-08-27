@@ -35,13 +35,13 @@
 <div class="blog">
       <div class="blog__wrapper">
           <div class="blog__header">
-              <h2 class="blog__header__heading">Blog Artikel</h2>
+              <h2 class="blog__header__heading">Ordnungscoach Blog Artikel</h2>
           </div>
-          <div class="blog__row blog__row--wrap">
+          <div class="blog__row--intro">
             In regelmäßigen Abständen findest du hier neue Blog Artikel zu Themen wie Ausmisten, Ordnung und Struktur zu Hause schaffen, Ordnungshelfer, Interior Design und mehr.
             Setze dir ein Lesezeichen für diese Seite, um keinen neuen Artikel zu verpassen.
             <br><br>
-            Wenn du eigene Vorschläge für Themen hast, die dich interessieren, dann schreib mir gern über das Kontaktformular.
+            Wenn du eigene Vorschläge für Themen hast, die dich interessieren, dann <a href="https://einzweidinge.de/kontakt/">schreib mir gern über das Kontaktformular</a>.
             <br><br>
             Viel Spass beim Lesen!
           </div>

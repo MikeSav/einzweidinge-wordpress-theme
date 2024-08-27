@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Now the cookie stuff
     let cookieConsent = getCookie('user_cookie_consent');
-    if (cookieConsent === '') {
+    if (cookieConsent === '' && !sessionStorage.getItem('einzweidinge')) {
         document.getElementById('cookieCard').style.display = 'block';
     } else {
         document.getElementById('cookieCard').style.display = 'none';
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if ('IntersectionObserver' in window) {
-        let lazyBackgroundObserver = new IntersectionObserver((entries, observer) => {
+        let lazyBackgroundObserver = new IntersectionObserver((entries) => {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.remove('remove-bg-img');
@@ -111,10 +111,10 @@ function getCookie(cname) {
     let ca = decodedCookie.split(';');
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) === ' ') {
             c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
+        if (c.indexOf(name) === 0) {
             return c.substring(name.length, c.length);
         }
     }
@@ -134,6 +134,10 @@ function closeCookiePopup(event) {
     event.stopPropagation();
     event.preventDefault();
     document.getElementById('cookieCard').style.display = 'none';
+    // set a local storage
+    if (!sessionStorage.getItem('einzweidinge')) {
+        sessionStorage.setItem('einzweidinge', 'true');
+    }
 }
 
 // silly click nav thing
