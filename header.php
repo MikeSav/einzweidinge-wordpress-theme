@@ -21,7 +21,12 @@
     <meta name="p:domain_verify" content="e18aa334f3e705cd9138d87f1767436e">
     <meta name="twitter:image" value="https://einzweidinge.de/wp-content/uploads/2023/05/einzweiding-website-shot.webp" />
     <?php wp_head(); ?>
-    <title><?php wp_title(); ?></title>
+    <?php
+    /*
+    No wp_title() as Yeost adds one!
+     <!--title>< wp_title();></title -->
+    */
+    ?>
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_template_directory_uri() ?>/assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_template_directory_uri() ?>/assets/images/favicon/favicon-32x32.png">
@@ -51,7 +56,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <?php wp_nav_menu(array(
        'menu' => 'TopNavMenu',
        'menu_class' => 'ham-menu__items__list',
-       'container' => 'ul',
+       'container' => 'menu',
        'container_class'=> 'ham-menu__items__list',
        'add_a_class' => 'ham-menu__link')); ?>
 
@@ -119,7 +124,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                <?php wp_nav_menu(array(
                        'menu' => 'TopNavMenu',
                        'menu_class' => 'top-nav__wrapper__links__list',
-                       'container' => 'ul',
+                       'container' => 'menu',
                        'container_class'=> 'top-nav__wrapper__links__list',
                        'add_a_class' => 'text-link')); ?>
         </div>

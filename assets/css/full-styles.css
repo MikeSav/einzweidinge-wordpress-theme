@@ -39,6 +39,12 @@ html {
     scroll-behavior: smooth;
 }
 
+menu {
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
 body {
     background-color: #FFFFFF;
     font-family: var(--text);
@@ -133,6 +139,10 @@ ol li::marker {
 
 .body__no-scroll {
     overflow: hidden;
+}
+
+.angebot {
+    scroll-margin-top: 125px;
 }
 
 .button-link {
@@ -394,6 +404,7 @@ ol li::marker {
     background-size: cover;
     border-radius: 5px 5px 0 0;
     cursor: pointer;
+    background-position: center;
 }
 
 .blog__card__img__photo {
@@ -596,11 +607,15 @@ ol li::marker {
     line-height: 1.5rem;
 }
 
-.blog-article__content a, .einzweidinge-header-and-text__content a {
+.blog-article__content a, .einzweidinge-header-and-text__content a, .blog__row--intro a, .blog-article-section__wrapper a {
     color: var(--primary);
     position: relative;
     text-decoration: none;
     font-weight: 700;
+}
+
+.blog-article__content a:hover, .einzweidinge-header-and-text__content a:hover, .blog__row--intro a:hover, .blog-article-section__wrapper a:hover {
+    text-decoration: underline;
 }
 
 .blog-article__content a:before, .einzweidinge-header-and-text__content a:before {
@@ -1064,11 +1079,15 @@ ol li::marker {
     }
 }
 
-@media only screen and (max-width: 710px) {
+@media only screen and (max-width: 932px) {
     * {
         --h1-font-size: 3rem;
         --h2-font-size: 2rem;
         --h3-font-size: 1.2rem;
+    }
+
+    .angebot, .services {
+        scroll-margin-top: 117px !important;
     }
 
     .top-nav__wrapper__links__list {
@@ -1090,6 +1109,11 @@ ol li::marker {
 
     .intro::before {
         background-position: 58%;
+    }
+
+    .intro {
+        background-attachment: scroll !important;
+        max-height: 100vh;
     }
 
     .blog__wrapper, .clean-up__wrapper {
@@ -1180,7 +1204,7 @@ ol li::marker {
     }
 }
 
-@media only screen and (min-width: 710px) and (max-width: 1020px) {
+@media only screen and (min-width: 932px) and (max-width: 1020px) {
     .blog__row, .clean-up__why__cards__row {
         flex-direction: row;
     }

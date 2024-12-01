@@ -37,7 +37,7 @@
              <?php wp_nav_menu(array(
                 'menu' => 'footerMenu',
                 'menu_class' => 'footer__list',
-                'container' => 'ul',
+                'container' => 'menu',
                 'container_class'=> 'footer__list',
                 'add_a_class' => 'text-link')); ?>
                 <div class="footer__social">
@@ -66,12 +66,10 @@
                 </div>
             </div>
             <address>Prenzlauer Berg, 10439 Berlin</address>
-
         </div>
-
 		<div class="footer__row">
 			<div class="footer__copy">
-                &copy; Jasmin Seikowsky - Ordnungscoach - <?php echo date("Y"); ?>
+                &copy; Jasmin Seikowsky - Aufräumcoach & Ordnungscoach - <?php echo date("Y"); ?>
             </div>
 		 </div>
     </div>
