@@ -1219,6 +1219,106 @@ ol li::marker {
 
 }
 
+/* new media stuff */
+.media-gallery {
+    display: flex;
+    color: #FFFFFF;
+    justify-content: center;
+    background: var(--ordnungscoaching);
+    border-top: 5px solid #FFFFFF;
+    scroll-margin-top: 125px;
+}
+
+.media-gallery--home-office {
+    background-color: var(--homeoffice);
+}
+
+.media-gallery--kleidershrank {
+    background-color: var(--kleidershrank);
+}
+
+.media-gallery--umzug {
+    background-color: var(--umzug);
+}
+
+.media-gallery__wrapper {
+    width: var(--max-width);
+    max-width: var(--max-width);
+    display: flex;
+    margin: 1.5rem;
+    padding: 3.125rem 0;
+    flex-direction: column;
+}
+
+.media-gallery__header {
+    flex: 1;
+    margin-bottom: 1.25rem;
+}
+
+.media-gallery__header__heading {
+    font-family: var(--heading);
+    font-size: var(--h2-font-size);
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    max-width: var(--max-width);
+    color: #FFFFFF;
+}
+
+.media-gallery__content {
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+.media-gallery__images {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.media-gallery__images__img {
+    flex: 1 0 auto;
+}
+
+
+
+.media-gallery__images__img__img {
+    border-radius: 5px;
+    width: 100%;
+}
+
+.media-gallery__footer {
+    margin-top: 2.5rem;
+    font-family: var(--heading);
+    font-size: var(--h3-font-size);
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 0.1rem;
+    text-align: center;
+}
+
+.media-gallery__control {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media only screen and (max-width: 1020px) {
+    .media-gallery__images {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 710px) {
+    .media-gallery__images {
+        flex-direction: column;
+    }
+}
+
 
 /* putting this guy here perhaps he will win ?*/
 .remove-bg-img {
