@@ -47,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         '.services__row--design',
         '.services__row__visual,',
         '.uber-mich__list__img--book,',
-        '.uber-mich__list__img.uber-mich__list__img--book'
+        '.uber-mich__list__img.uber-mich__list__img--book,',
+        '.media-gallery__images__img'
     ];
 
     let lazyBackgrounds = [].slice.call(document.querySelectorAll(cssList.join(' ')));

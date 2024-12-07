@@ -1027,6 +1027,10 @@ ol li::marker {
     height: 115px;
 }
 
+address {
+    margin-left: .5rem;
+}
+
 /* breakpoints */
 @media only screen and (max-width: 1020px) {
 
@@ -1066,6 +1070,10 @@ ol li::marker {
         justify-content: center;
         margin-left: 0;
         margin-bottom: 0.5rem;
+    }
+
+    address {
+        margin-left: 0;
     }
 
     .text-link {
@@ -1162,6 +1170,10 @@ ol li::marker {
         height: 115px;
     }
 
+    .footer__social {
+        text-align: center;
+    }
+
     .contact__types {
         flex-direction: column;
         text-align: center;
@@ -1217,6 +1229,9 @@ ol li::marker {
         height: 180px;
     }
 
+    .footer__social {
+        text-align: center;
+    }
 }
 
 /* new media stuff */
@@ -1227,6 +1242,11 @@ ol li::marker {
     background: var(--ordnungscoaching);
     border-top: 5px solid #FFFFFF;
     scroll-margin-top: 125px;
+    padding: 0 1.5rem;
+}
+
+.media-gallery--last {
+    border-bottom: 5px solid #FFFFFF;
 }
 
 .media-gallery--home-office {
@@ -1264,6 +1284,15 @@ ol li::marker {
     text-align: center;
     max-width: var(--max-width);
     color: #FFFFFF;
+}
+
+.media-gallery a {
+    color: #FFFFFF;
+}
+
+.media-gallery a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .media-gallery__content {

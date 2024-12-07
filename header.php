@@ -92,7 +92,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="top-nav__wrapper">
         <div>
             <a href="https://einzweidinge.de">
-                <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/logos/einzweidinge-logo-Dein-Ordnungscoach-in-Berlin" class="top-nav__logo" alt="einzweidinge logo">
+                <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/logos/ein-zwei-dinge.svg" class="top-nav__logo" alt="einzweidinge logo">
             </a>
         </div>
         <div class="top-nav__wrapper__links">

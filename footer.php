@@ -34,12 +34,15 @@
         </div>
         <div class="footer__row">
             <div class="footer__links">
-             <?php wp_nav_menu(array(
-                'menu' => 'footerMenu',
-                'menu_class' => 'footer__list',
-                'container' => 'menu',
-                'container_class'=> 'footer__list',
-                'add_a_class' => 'text-link')); ?>
+               <div>
+                <?php wp_nav_menu(array(
+                               'menu' => 'footerMenu',
+                               'menu_class' => 'footer__list',
+                               'container' => 'menu',
+                               'container_class'=> 'footer__list',
+                               'add_a_class' => 'text-link')); ?>
+               </div>
+
                 <div class="footer__social">
                     <ul>
                         <li>
@@ -64,8 +67,10 @@
                         </li>
                     </ul>
                 </div>
+                <div>
+                    <address>Prenzlauer Berg, 10439 Berlin</address>
+                </div>
             </div>
-            <address>Prenzlauer Berg, 10439 Berlin</address>
         </div>
 		<div class="footer__row">
 			<div class="footer__copy">
