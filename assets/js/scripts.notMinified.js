@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Experiment Code To Lazy Load CSS BG Images
+    // when adding new remember to add the "," at the end of the string!
+    // BUT NOT THE LAST ITEM!
     let cssList = [
         '.blog-article__image,',
         '.blog__card__img,',
@@ -48,7 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
         '.services__row__visual,',
         '.uber-mich__list__img--book,',
         '.uber-mich__list__img.uber-mich__list__img--book,',
-        '.media-gallery__images__img'
+        '.media-gallery__images__img,',
+        '.uber-mich__list__img,',
+        '.uber-mich__list__img__pic'
     ];
 
     let lazyBackgrounds = [].slice.call(document.querySelectorAll(cssList.join(' ')));

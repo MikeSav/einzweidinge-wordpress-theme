@@ -99,14 +99,6 @@ h4 {
     margin: 1.25rem 0;
 }
 
-h5 {
-
-}
-
-h6 {
-
-}
-
 p {
     font-family: var(--text);
 }
@@ -391,7 +383,6 @@ ol li::marker {
 
 .blog__card--wrap {
     flex: 1 1 30%;
-    max-width: 307px;
 }
 
 .blog__card__img {
@@ -399,12 +390,21 @@ ol li::marker {
     justify-content: center;
     position: relative;
     height: 300px;
-    max-height: 300px;
-    background: url('./css-images/blog/blog1.jpg');
+    max-height: 300px;;
     background-size: cover;
     border-radius: 5px 5px 0 0;
     cursor: pointer;
     background-position: center;
+}
+
+.blog__card__img__pic {
+    border-radius: 5px 5px 0 0;
+    object-fit: cover;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    object-position: top;
+    cursor: pointer;
 }
 
 .blog__card__img__photo {
@@ -437,6 +437,7 @@ ol li::marker {
     line-height: 1.5rem;
     text-align: center;
     height: 250px;
+    margin-top: 1rem;
 }
 
 .blog__card__details__date {
