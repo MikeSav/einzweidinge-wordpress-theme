@@ -64,8 +64,9 @@
                     </div>
                     <div class="blog__card__img" onClick="goToBlogPost('<?php the_permalink();?>')">
                         <img src="<?php the_post_thumbnail_url(); ?>"
-                        							alt="<?php the_title(); ?>"
-                        							class="blog__card__img__pic" />
+                             loading="lazy"
+                        	 alt="<?php the_title(); ?>"
+                        	 class="blog__card__img__pic" />
                     </div>
                 </div>
             <?php
