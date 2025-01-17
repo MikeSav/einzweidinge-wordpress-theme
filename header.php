@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="p:domain_verify" content="e18aa334f3e705cd9138d87f1767436e">
     <meta name="twitter:image" value="https://einzweidinge.de/wp-content/uploads/2023/05/einzweiding-website-shot.webp" />
-    <meta property=“og:image“ content=“https://einzweidinge.de/wp-content/uploads/2025/01/einzweidinge-jasmin-seikowsky-ordnungscoach.webp“>
+    <meta property="og:image" content="https://einzweidinge.de/wp-content/uploads/2025/01/einzweidinge-jasmin-seikowsky-ordnungscoach.webp">
     <?php wp_head(); ?>
     <?php
     /*

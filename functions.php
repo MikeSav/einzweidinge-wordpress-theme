@@ -147,22 +147,6 @@ function add_support()
 
 add_action("after_setup_theme", "add_support");
 
-// this is fucking shit up?
-function add_random_css()
-{
-    wp_register_style(
-        "einzweidingeRandom",
-        plugin_dir_url(__FILE__) . "/assets/css/style.css",
-        ["einzweidinge"],
-        null // example of no version number...
-        // ...and no CSS media type
-    );
-
-    wp_enqueue_style("einzweidingeRandom");
-}
-
-add_action("wp_enqueue_scripts", "add_random_css");
-
 /**
  * Load Google Fonts into Editor
  */
