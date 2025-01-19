@@ -667,6 +667,15 @@ ol li::marker {
     background-size: cover;
 }
 
+.blog-article__image__img {
+    height: 300px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+
 .blog-article__wrapper,
 .einzweidinge-header-and-text__wrapper,
 .contact__wrapper {
@@ -1009,6 +1018,11 @@ ol li::marker {
 
 .blog-article-section__wrapper p {
     line-height: 1.5rem;
+}
+
+.blog-article-section__wrapper img {
+    max-width: 100%;
+    object-fit: cover;
 }
 
 .blog-article__header__heading--block {
