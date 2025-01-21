@@ -18,9 +18,9 @@
             </a>
             <!-- Ordnungswelt -->
 				<a href="https://ordnungswelt.com/Ordnungsexperten/jasmin-seikowsky" target="_blank">
-                    <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/certificates/banner_expertin-ordnungswelt_web.webp"
+                    <img src="https://einzweidinge.de/wp-content/uploads/2025/01/ordnungscoach_expertin_ordnungswelt_web-1.webp"
                     alt="Ordnungswelt Zertifikat"
-                    class="footer__certificate"
+                    class="footer__certificate--ow"
                     loading="lazy">
                 </a>
 				<!-- https://betidy.io/ -->
@@ -61,8 +61,8 @@
                              </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/ein2Dinge" target="_blank">
-                                <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/social-icons/twitter.svg" alt="einzweidinge twitter">
+                            <a href="https://bsky.app/profile/ein2dinge.bsky.social" target="_blank">
+                                <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/social-icons/bluesky.svg" alt="einzweidinge bluesky">
                             </a>
                         </li>
                     </ul>

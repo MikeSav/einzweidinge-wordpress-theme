@@ -84,8 +84,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </a>
                 </li>
                  <li>
-                    <a href="https://twitter.com/ein2Dinge" target="_blank">
-                        <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/social-icons/twitter.svg" alt="einzweidinge twitter">
+                    <a href="https://bsky.app/profile/ein2dinge.bsky.social" target="_blank">
+                        <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/social-icons/bluesky.svg" alt="einzweidinge bluesky">
                     </a>
                 </li>
             </ul>
@@ -120,8 +120,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </a>
                 </li>
                 <li>
-                    <a href="https://twitter.com/ein2Dinge" target="_blank" title="einzweidinge twitter">
-                        <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/social-icons/twitter.svg" alt="einzweidinge twitter">
+                    <a href="https://bsky.app/profile/ein2dinge.bsky.social" target="_blank" title="einzweidinge Bluesky">
+                        <img src="<?php echo get_template_directory_uri()?>/assets/css/css-images/social-icons/bluesky.svg" alt="einzweidinge Bluesky">
                     </a>
                 </li>
             </ul>

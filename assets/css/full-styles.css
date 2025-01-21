@@ -1042,6 +1042,11 @@ ol li::marker {
     height: 115px;
 }
 
+.footer__certificate--ow {
+    width: 100px;
+    margin: .5rem .5rem 0;
+}
+
 address {
     margin-left: .5rem;
 }
