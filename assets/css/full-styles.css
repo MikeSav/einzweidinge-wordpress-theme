@@ -1105,6 +1105,10 @@ address {
     .blog-article ul {
         padding: 0 1rem;
     }
+
+    .carbonbadge {
+        margin-top: 0.5rem;
+    }
 }
 
 @media only screen and (max-width: 932px) {
@@ -1233,6 +1237,10 @@ address {
     .blog__card--wrap {
         flex: unset;
         max-width: unset;
+    }
+
+    .carbonbadge {
+        margin-top: 0.5rem;
     }
 }
 

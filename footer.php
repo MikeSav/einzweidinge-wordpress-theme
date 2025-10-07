@@ -69,6 +69,7 @@
                 </div>
                 <div>
                     <address>Prenzlauer Berg, 10439 Berlin</address>
+
                 </div>
             </div>
         </div>
@@ -76,6 +77,8 @@
 			<div class="footer__copy">
                 &copy; Jasmin Seikowsky - Aufräumcoach & Ordnungscoach - <?php echo date("Y"); ?>
             </div>
+            <div id="wcb" class="carbonbadge wcb-d"></div>
+            <script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
 		 </div>
     </div>
 </div>
