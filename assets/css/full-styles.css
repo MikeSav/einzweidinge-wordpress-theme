@@ -491,7 +491,7 @@ ol li::marker {
 .footer__social {
     font-size: 1.4em;
     letter-spacing: 0.1rem;
-    margin-top: 1rem;
+    margin-top: 0;
     margin-left: 0.6rem;
 }
 
@@ -521,6 +521,10 @@ ol li::marker {
     text-decoration: none;
     text-transform: capitalize;
     margin: 0 0.5rem 0 0;
+    /* new menu stuff*/
+    font-family: var(--heading);
+    font-size: 1.5rem;
+    font-weight: 100;
 }
 
 .text-link:last-of-type {
@@ -884,6 +888,12 @@ ol li::marker {
     text-transform: uppercase;
 }
 
+.cookie__card .text-link {
+    font-family: var(--text);
+    font-size: inherit !important;
+    font-weight: bold;
+}
+
 .services__card__details__control {
     margin-bottom: 1.25rem;
 }
@@ -1196,6 +1206,7 @@ address {
 
     .footer__social {
         text-align: center;
+        margin-top: 1rem;
     }
 
     .contact__types {
@@ -1244,6 +1255,10 @@ address {
     }
 }
 
+.flip-direction {
+    flex-direction: row-reverse;
+}
+
 @media only screen and (min-width: 932px) and (max-width: 1020px) {
     .blog__row, .clean-up__why__cards__row {
         flex-direction: row;
@@ -1259,6 +1274,7 @@ address {
 
     .footer__social {
         text-align: center;
+        margin-top: 1rem;
     }
 }
 
