@@ -1,199 +1,188 @@
 <?php
-/**
- * Register CSS Class
- */
-function add_css()
-{
-    $version = wp_get_theme()->get("Version");
-    wp_register_style(
-        "first",
-        get_template_directory_uri() . "/assets/css/style.css",
-        false,
-        $version,
-        "all"
-    );
-    wp_enqueue_style("first");
-}
+ /**
+  * THEME ASSETS (CSS + JS) WITH CACHE BUSTING
+  */
+ function theme_enqueue_assets() {
+     // Absolute paths for filemtime()
+     $css_path = get_template_directory() . '/assets/css/style.css';
+     $js_path  = get_template_directory() . '/assets/js/scripts.js';
 
-add_action("wp_enqueue_scripts", "add_css");
+     // Cache-busting versions
+     $css_ver = file_exists($css_path) ? filemtime($css_path) : false;
+     $js_ver  = file_exists($js_path)  ? filemtime($js_path)  : false;
 
-/**
- * REMOVE GUTENBERG BLOCK LIBRARY CSS FROM LOADING ON FRONTEND
- */
-function remove_wp_block_library_css()
-{
-    wp_dequeue_style("wp-block-library");
-    wp_dequeue_style("wp-block-library-theme");
-    wp_dequeue_style("wc-block-style"); // REMOVE WOOCOMMERCE BLOCK CSS
-    wp_dequeue_style("global-styles"); // REMOVE THEME.JSON
-}
+     // Main stylesheet
+     wp_enqueue_style(
+         'theme-style',
+         get_template_directory_uri() . '/assets/css/style.css',
+         array(),
+         $css_ver,
+         'all'
+     );
 
-remove_action("wp_enqueue_scripts", "wp_enqueue_global_styles");
-remove_action("wp_footer", "wp_enqueue_global_styles", 1);
-add_action("wp_enqueue_scripts", "remove_wp_block_library_css", 100);
+     // Frontend JS (with wp.* dependencies)
+     wp_enqueue_script(
+         'theme-scripts',
+         get_template_directory_uri() . '/assets/js/scripts.js',
+         array('wp-dom-ready', 'wp-blocks'),
+         $js_ver,
+         true
+     );
+ }
+ add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
 
-function wps_deregister_styles()
-{
-    wp_dequeue_style("global-styles");
-}
 
-add_action("wp_enqueue_scripts", "wps_deregister_styles", 100);
+ /**
+  * PURE CLASSIC THEME MODE — REMOVE ALL GUTENBERG CSS
+  */
 
-/**
- * Register JS
- */
-function add_script()
-{
-    wp_register_script(
-        "js-script",
-        get_template_directory_uri() . "/assets/js/scripts.js",
-        true
-    );
-    wp_enqueue_script("js-script");
-}
+ // Disable block styles entirely
+ add_action('after_setup_theme', function() {
+     remove_theme_support('wp-block-styles');
+ });
 
-add_action("wp_enqueue_scripts", "add_script");
+ // Disable global styles (theme.json + presets)
+ add_filter('wp_enqueue_global_styles', '__return_false');
 
-function discard_menu_classes($classes, $item)
-{
-    return (array) get_post_meta($item->ID, "_menu_item_classes", true);
-}
+ // Disable block supports CSS (layout, spacing, elements, etc.)
+ add_filter('wp_should_load_separate_core_block_assets', '__return_false');
 
-add_filter("nav_menu_css_class", "discard_menu_classes", 10, 2);
-add_filter("block_categories_all", function ($categories) {
-    // Adding a new category.
-    $categories[] = [
-        "slug" => "einzweidinge-category",
-        "title" => "Einzweidinge",
-    ];
+ // Dequeue any remaining block styles
+ function theme_remove_block_css() {
+     wp_dequeue_style('wp-block-library');
+     wp_dequeue_style('wp-block-library-theme');
+     wp_dequeue_style('wc-block-style');
+     wp_dequeue_style('global-styles');
+     wp_dequeue_style('wp-elements'); // removes :root :where(.wp-element-button...) rules
+ }
+ add_action('wp_enqueue_scripts', 'theme_remove_block_css', 100);
 
-    return $categories;
-});
+ // Prevent inline global styles from being printed
+ remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
+ remove_action('wp_footer', 'wp_enqueue_global_styles', 1);
 
-/**
- * Stick a div with blog-article class around a classic
- */
-add_filter("render_block", "wrap_classic_block", 10, 2);
+ /**
+  * DISABLE EMOJIS
+  */
+ function theme_disable_emojis() {
+     remove_action('wp_head', 'print_emoji_detection_script', 7);
+     remove_action('admin_print_scripts', 'print_emoji_detection_script');
+     remove_action('wp_print_styles', 'print_emoji_styles');
+     remove_action('admin_print_styles', 'print_emoji_styles');
+     remove_filter('the_content_feed', 'wp_staticize_emoji');
+     remove_filter('comment_text_rss', 'wp_staticize_emoji');
+     remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
 
-function wrap_classic_block($block_content, $block)
-{
-    if (
-        null === $block["blockName"] &&
-        !empty($block_content) &&
-        !ctype_space($block_content)
-    ) {
-        $block_content =
-            '<div class="blog-article-section"><div class="blog-article-section__wrapper">' .
-            $block_content .
-            "</div></div>";
-    }
-    return $block_content;
-}
+     add_filter('tiny_mce_plugins', function($plugins) {
+         return is_array($plugins) ? array_diff($plugins, array('wpemoji')) : array();
+     });
+ }
+ add_action('init', 'theme_disable_emojis');
 
-function add_additional_class_on_a($classes, $item, $args)
-{
-    if (isset($args->add_a_class)) {
-        $classes["class"] = $args->add_a_class;
-    }
-    return $classes;
-}
+ /**
+  * THEME SUPPORT
+  */
+ function theme_add_support() {
+     add_theme_support('menus');
+     // removed wp-block-styles (we disable it above)
+     add_theme_support('post-thumbnails');
+     add_theme_support('title-tag');
+     add_theme_support('responsive-embeds');
+     add_theme_support('custom-logo');
+     add_theme_support('editor-styles');
 
-add_filter("nav_menu_link_attributes", "add_additional_class_on_a", 1, 3);
-add_filter("should_load_separate_core_block_assets", "__return_true");
+     add_editor_style('/assets/css/style.css');
+ }
+ add_action('after_setup_theme', 'theme_add_support');
 
-/**
- * Disable emojis in WordPress
- */
-add_action("init", "smartwp_disable_emojis");
 
-function smartwp_disable_emojis()
-{
-    remove_action("wp_head", "print_emoji_detection_script", 7);
-    remove_action("admin_print_scripts", "print_emoji_detection_script");
-    remove_action("wp_print_styles", "print_emoji_styles");
-    remove_filter("the_content_feed", "wp_staticize_emoji");
-    remove_action("admin_print_styles", "print_emoji_styles");
-    remove_filter("comment_text_rss", "wp_staticize_emoji");
-    remove_filter("wp_mail", "wp_staticize_emoji_for_email");
-    add_filter("tiny_mce_plugins", "disable_emojis_tinymce");
-}
+ /**
+  * EDITOR STYLES (with cache busting)
+  */
+ function theme_editor_styles() {
+     $editor_css_path = get_template_directory() . '/assets/css/style.css';
+     $editor_css_ver  = file_exists($editor_css_path) ? filemtime($editor_css_path) : false;
 
-/**
- * Pretty obvious, get rid of emoji plugin
- */
-function disable_emojis_tinymce($plugins)
-{
-    if (is_array($plugins)) {
-        return array_diff($plugins, ["wpemoji"]);
-    } else {
-        return [];
-    }
-}
+     wp_enqueue_style(
+         'theme-editor-style',
+         get_template_directory_uri() . '/assets/css/style.css',
+         array(),
+         $editor_css_ver
+     );
+ }
+ add_action('enqueue_block_editor_assets', 'theme_editor_styles');
 
-/**
- * Enable menus and other shit...
- */
-function add_support()
-{
-    add_theme_support("menus");
-    add_theme_support("wp-block-styles");
-    add_theme_support("post-thumbnails");
-    add_theme_support("title-tag");
-    add_theme_support("responsive-embeds");
-    add_theme_support("custom-logo");
-    add_theme_support("editor-styles");
-    add_editor_style(get_template_directory_uri() . "/assets/css/style.css");
-}
+ /**
+  * BLOCK EDITOR SCRIPTS (for registering custom block styles)
+  */
+ function theme_enqueue_block_editor_assets() {
 
-add_action("after_setup_theme", "add_support");
+     $editor_js_path = get_template_directory() . '/assets/js/scripts.js';
+     $editor_js_ver  = file_exists($editor_js_path) ? filemtime($editor_js_path) : false;
 
-/**
- * Load Google Fonts into Editor
- */
-function add_google_fonts()
-{
-    wp_enqueue_style(
-        "add_google_fonts",
-        "https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&family=Oswald:wght@200;300;400&display=swap",
-        false
-    );
-}
+     wp_enqueue_script(
+         'theme-editor-scripts',
+         get_template_directory_uri() . '/assets/js/scripts.js',
+         array('wp-blocks', 'wp-dom-ready', 'wp-edit-post'),
+         $editor_js_ver,
+         true
+     );
+ }
+ add_action('enqueue_block_editor_assets', 'theme_enqueue_block_editor_assets');
 
-// add_action( 'wp_enqueue_scripts', 'add_google_fonts' );
+ /**
+  * CUSTOM BLOCK CATEGORY
+  */
+ add_filter('block_categories_all', function($categories) {
+     $categories[] = array(
+         'slug'  => 'einzweidinge-category',
+         'title' => 'Einzweidinge',
+     );
+     return $categories;
+ });
 
-function child_editor_styles()
-{
-    add_theme_support("editor-styles");
-    add_editor_style([get_template_directory_uri() . "/assets/css/style.css"]);
-}
+ /**
+  * WRAP CLASSIC BLOCK CONTENT
+  */
+ function theme_wrap_classic_block($block_content, $block) {
+     if ($block['blockName'] === null && !empty(trim($block_content))) {
+         return '<div class="blog-article-section"><div class="blog-article-section__wrapper">'
+             . $block_content .
+             '</div></div>';
+     }
+     return $block_content;
+ }
+ add_filter('render_block', 'theme_wrap_classic_block', 10, 2);
 
-// add_action( 'admin_init', 'child_editor_styles' );
+ /**
+  * MENU CLASS CLEANUP
+  */
+ function theme_clean_menu_classes($classes, $item) {
+     return (array) get_post_meta($item->ID, '_menu_item_classes', true);
+ }
+ add_filter('nav_menu_css_class', 'theme_clean_menu_classes', 10, 2);
 
-/**
- * Modify language attributes for specific pages and posts.
- */
-function my_custom_language_attributes($output)
-{
-    // Define an array of page and post slugs to modify.
-    $page_slugs = ["english"]; // Add any additional page or post slugs here
-    // Check if the current page or post is in the defined array of slugs.
-    if (is_page($page_slugs) || is_single($page_slugs)) {
-        // Get the current language.
-        $lang = get_bloginfo("language");
-        // Set the desired language.
-        $new_lang = "en-US";
-        // Replace the current language with the new language in the HTML attributes.
-        $output = str_replace(
-            'lang="' . $lang . '"',
-            'lang="' . $new_lang . '"',
-            $output
-        );
-    }
+ function theme_add_class_to_links($atts, $item, $args) {
+     if (isset($args->add_a_class)) {
+         $atts['class'] = $args->add_a_class;
+     }
+     return $atts;
+ }
+ add_filter('nav_menu_link_attributes', 'theme_add_class_to_links', 10, 3);
 
-    // Return the modified HTML attributes.
-    return $output;
-}
+ /**
+  * CUSTOM LANGUAGE ATTRIBUTE OVERRIDE
+  */
+ function theme_custom_language_attributes($output) {
+     $slugs = array('english');
 
-// Hook the function to the language_attributes filter.
-add_filter("language_attributes", "my_custom_language_attributes");
+     if (is_page($slugs) || is_single($slugs)) {
+         $current = get_bloginfo('language');
+         $output = str_replace('lang="' . $current . '"', 'lang="en-US"', $output);
+     }
+
+     return $output;
+ }
+ add_filter('language_attributes', 'theme_custom_language_attributes');
+
 ?>

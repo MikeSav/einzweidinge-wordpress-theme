@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('cookieCard').style.display = 'none';
     }
 
-    // Experiment Code To Lazy Load CSS BG Images
+    // Experiment Code for img effect
     // when adding new remember to add the "," at the end of the string!
     // BUT NOT THE LAST ITEM!
     let cssList = [
@@ -149,3 +149,20 @@ function closeCookiePopup(event) {
 function goToBlogPost(url) {
     document.location.href = url;
 }
+
+wp.domReady( () => {
+
+    wp.blocks.unregisterBlockStyle('core/button', 'outline');
+    wp.blocks.unregisterBlockStyle('core/button', 'fill');
+
+    wp.blocks.registerBlockStyle('core/button', {
+        name: 'primary-button',
+        label: 'Primary',
+        isDefault: true
+    });
+
+    wp.blocks.registerBlockStyle('core/button', {
+        name: 'secondary-button',
+        label: 'Secondary'
+    });
+})
