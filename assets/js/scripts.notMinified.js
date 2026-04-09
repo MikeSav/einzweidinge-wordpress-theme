@@ -2,30 +2,37 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     window.onscroll = () => {
-        scrollFunction()
+        scrollFunction();
     };
 
     function scrollFunction() {
+        const nav = document.querySelector('.top-nav');
+        const logo = document.querySelector('.top-nav__logo');
+
+        if (!nav || !logo) return; // <-- GUARD
+
         if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            document.querySelector('.top-nav').classList.add('top-nav--bg');
-            document.querySelector('.top-nav__logo').classList.add('top-nav__logo--shrink');
+            nav.classList.add('top-nav--bg');
+            logo.classList.add('top-nav__logo--shrink');
         } else {
-            document.querySelector('.top-nav').classList.remove('top-nav--bg');
-            document.querySelector('.top-nav__logo').classList.remove('top-nav__logo--shrink');
+            nav.classList.remove('top-nav--bg');
+            logo.classList.remove('top-nav__logo--shrink');
         }
     }
 
-    // Now the cookie stuff
+    // Cookie popup
+    const cookieCard = document.getElementById('cookieCard');
     let cookieConsent = getCookie('user_cookie_consent');
-    if (cookieConsent === '' && !sessionStorage.getItem('einzweidinge')) {
-        document.getElementById('cookieCard').style.display = 'block';
-    } else {
-        document.getElementById('cookieCard').style.display = 'none';
+
+    if (cookieCard) {
+        if (cookieConsent === '' && !sessionStorage.getItem('einzweidinge')) {
+            cookieCard.style.display = 'block';
+        } else {
+            cookieCard.style.display = 'none';
+        }
     }
 
-    // Experiment Code for img effect
-    // when adding new remember to add the "," at the end of the string!
-    // BUT NOT THE LAST ITEM!
+    // Lazy background images
     let cssList = [
         '.blog-article__image,',
         '.blog__card__img,',
@@ -55,41 +62,50 @@ document.addEventListener('DOMContentLoaded', () => {
         '.uber-mich__list__img__pic'
     ];
 
-    let lazyBackgrounds = [].slice.call(document.querySelectorAll(cssList.join(' ')));
+    let lazyBackgrounds = document.querySelectorAll(cssList.join(' '));
 
-    // now set the background image prop to none
-    lazyBackgrounds.forEach((entry) => {
-        entry.classList.add('remove-bg-img');
-        entry.classList.add('zero-opacity');
-    });
+    if (lazyBackgrounds.length > 0) {
+        lazyBackgrounds.forEach((entry) => {
+            entry.classList.add('remove-bg-img');
+            entry.classList.add('zero-opacity');
+        });
 
-    if ('IntersectionObserver' in window) {
-        let lazyBackgroundObserver = new IntersectionObserver((entries) => {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.remove('remove-bg-img');
-                    entry.target.classList.add('animate-lazy-bg-img');
-                    lazyBackgroundObserver.unobserve(entry.target);
-                }
+        if ('IntersectionObserver' in window) {
+            let lazyBackgroundObserver = new IntersectionObserver((entries) => {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('remove-bg-img');
+                        entry.target.classList.add('animate-lazy-bg-img');
+                        lazyBackgroundObserver.unobserve(entry.target);
+                    }
+                });
             });
-        });
 
-        lazyBackgrounds.forEach((lazyBackground) => {
-            lazyBackgroundObserver.observe(lazyBackground);
-        });
+            lazyBackgrounds.forEach((lazyBackground) => {
+                lazyBackgroundObserver.observe(lazyBackground);
+            });
+        }
     }
 });
 
 //Show and hide the hamburger menu
 function showHamburgerMenu() {
-    document.getElementsByTagName('body')[0].classList.add('body__no-scroll');
-    let overlay = document.querySelector('.ham-menu');
+    const body = document.body;
+    const overlay = document.querySelector('.ham-menu');
+
+    if (!overlay) return; // <-- GUARD
+
+    body.classList.add('body__no-scroll');
     overlay.style.transform = 'translateY(0)';
 }
 
 function closeHamburgerMenu() {
-    document.getElementsByTagName('body')[0].classList.remove('body__no-scroll');
-    let overlay = document.querySelector('.ham-menu');
+    const body = document.body;
+    const overlay = document.querySelector('.ham-menu');
+
+    if (!overlay) return; // <-- GUARD
+
+    body.classList.remove('body__no-scroll');
     overlay.style.transform = 'translateY(-100%)';
 }
 
@@ -138,8 +154,12 @@ function acceptCookieConsent(event) {
 function closeCookiePopup(event) {
     event.stopPropagation();
     event.preventDefault();
-    document.getElementById('cookieCard').style.display = 'none';
-    // set a local storage
+
+    const cookieCard = document.getElementById('cookieCard');
+    if (cookieCard) {
+        cookieCard.style.display = 'none';
+    }
+
     if (!sessionStorage.getItem('einzweidinge')) {
         sessionStorage.setItem('einzweidinge', 'true');
     }
@@ -150,7 +170,8 @@ function goToBlogPost(url) {
     document.location.href = url;
 }
 
-wp.domReady( () => {
+wp.domReady(() => {
+    if (!wp?.blocks) return; // <-- GUARD for editor iframe
 
     wp.blocks.unregisterBlockStyle('core/button', 'outline');
     wp.blocks.unregisterBlockStyle('core/button', 'fill');
@@ -165,4 +186,4 @@ wp.domReady( () => {
         name: 'secondary-button',
         label: 'Secondary'
     });
-})
+});
