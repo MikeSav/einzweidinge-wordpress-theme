@@ -171,6 +171,41 @@ add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
  add_filter('nav_menu_link_attributes', 'theme_add_class_to_links', 10, 3);
 
  /**
+ * POST API CALL
+ */
+ add_action('rest_api_init', function () {
+     register_rest_route('einzweidinge/v1', '/posts', [
+         'methods'  => 'GET',
+         'callback' => function ($request) {
+
+             $page = intval($request->get_param('page')) ?: 1;
+
+             $query = new WP_Query([
+                 'post_type'      => 'post',
+                 'posts_per_page' => 10,
+                 'paged'          => $page
+             ]);
+
+             ob_start();
+
+             if ($query->have_posts()) {
+                 while ($query->have_posts()) {
+                     $query->the_post();
+                     get_template_part('template-parts/blog-card');
+                 }
+             }
+
+             wp_reset_postdata();
+
+             return [
+                 'html'      => ob_get_clean(),
+                 'max_pages' => $query->max_num_pages
+             ];
+         }
+     ]);
+ });
+
+ /**
   * CUSTOM LANGUAGE ATTRIBUTE OVERRIDE
   */
  function theme_custom_language_attributes($output) {

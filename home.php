@@ -1,5 +1,6 @@
 <?php get_header(); ?>
 <style>
+/* your intro CSS stays unchanged */
 .page-intro {
   display: flex;
   flex-direction: column;
@@ -50,42 +51,23 @@
         </div>
 
         <?php
-            // Custom query with pagination
-            $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+            $paged = get_query_var('paged') ?: 1;
 
-            $args = [
+            $query = new WP_Query([
                 'post_type'      => 'post',
                 'posts_per_page' => 10,
                 'paged'          => $paged
-            ];
-
-            $query = new WP_Query($args);
+            ]);
         ?>
 
         <div class="blog__row blog__row--wrap">
             <?php if ($query->have_posts()) : ?>
                 <?php while ($query->have_posts()) : $query->the_post(); ?>
-                    <div class="blog__card blog__card--wrap">
-                        <div class="blog__card__details">
-                            <div class="blog__card__details__header"><?php the_title(); ?></div>
-                            <div class="blog__card__details__teaser"><?php the_excerpt(); ?></div>
-                            <div class="blog__card__details__date"><?php the_date('d/m/Y'); ?></div>
-                            <div class="blog__card__details__control">
-                                <a href="<?php the_permalink(); ?>" class="button-link">weiter lesen</a>
-                            </div>
-                        </div>
-                        <div class="blog__card__img" onClick="goToBlogPost('<?php the_permalink(); ?>')">
-                            <img src="<?php the_post_thumbnail_url(); ?>"
-                                 loading="lazy"
-                                 alt="<?php the_title(); ?>"
-                                 class="blog__card__img__pic" />
-                        </div>
-                    </div>
+                    <?php get_template_part('template-parts/blog-card'); ?>
                 <?php endwhile; ?>
             <?php endif; ?>
         </div>
 
-        <!-- Infinite scroll sentinel -->
         <div id="infinite-scroll-anchor"
              data-max-pages="<?php echo $query->max_num_pages; ?>">
         </div>
@@ -97,7 +79,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    let currentPage = <?php echo $paged; ?>;
+    let currentPage = 1;
     const maxPages = parseInt(document.getElementById('infinite-scroll-anchor').dataset.maxPages);
     const container = document.querySelector('.blog__row--wrap');
     const anchor = document.getElementById('infinite-scroll-anchor');
@@ -112,29 +94,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const nextPage = currentPage + 1;
 
         if (pageCache.has(nextPage)) {
-            appendPosts(pageCache.get(nextPage));
+            container.insertAdjacentHTML('beforeend', pageCache.get(nextPage));
             currentPage++;
             loading = false;
             return;
         }
 
-        fetch(`<?php echo home_url(); ?>/blog/page/${nextPage}/`)
-            .then(res => res.text())
-            .then(html => {
-                pageCache.set(nextPage, html);
-                appendPosts(html);
+        fetch(`/wp-json/einzweidinge/v1/posts?page=${nextPage}`)
+            .then(res => res.json())
+            .then(data => {
+                pageCache.set(nextPage, data.html);
+                container.insertAdjacentHTML('beforeend', data.html);
                 currentPage++;
             })
             .finally(() => loading = false)
             .catch(err => console.error(err));
-    };
-
-    const appendPosts = (html) => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const newPosts = doc.querySelectorAll('.blog__card');
-
-        newPosts.forEach(post => container.appendChild(post));
     };
 
     const observer = new IntersectionObserver((entries) => {
