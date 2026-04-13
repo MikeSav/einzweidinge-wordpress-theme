@@ -16,7 +16,7 @@ if (window !== window.parent) {
             const nav = document.querySelector('.top-nav');
             const logo = document.querySelector('.top-nav__logo');
 
-            if (!nav || !logo) return; // <-- GUARD
+            if (!nav || !logo) return;
 
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 nav.classList.add('top-nav--bg');
@@ -95,26 +95,26 @@ if (window !== window.parent) {
         }
     });
 
-    //Show and hide the hamburger menu
-    function showHamburgerMenu() {
+    // Show and hide the hamburger menu
+    window.showHamburgerMenu = function () {
         const body = document.body;
         const overlay = document.querySelector('.ham-menu');
 
-        if (!overlay) return; // <-- GUARD
+        if (!overlay) return;
 
         body.classList.add('body__no-scroll');
         overlay.style.transform = 'translateY(0)';
-    }
+    };
 
-    function closeHamburgerMenu() {
+    window.closeHamburgerMenu = function () {
         const body = document.body;
         const overlay = document.querySelector('.ham-menu');
 
-        if (!overlay) return; // <-- GUARD
+        if (!overlay) return;
 
         body.classList.remove('body__no-scroll');
         overlay.style.transform = 'translateY(-100%)';
-    }
+    };
 
     // Create cookie
     function setCookie(cname, cvalue, exdays) {
@@ -149,18 +149,21 @@ if (window !== window.parent) {
         return '';
     }
 
-    // Set cookie consent
-    function acceptCookieConsent(event) {
+    // Set cookie consent (GLOBAL)
+    window.acceptCookieConsent = function (event) {
         event.stopPropagation();
         event.preventDefault();
         deleteCookie('user_cookie_consent');
         setCookie('user_cookie_consent', 1, 30);
-        closeCookiePopup(event);
-    }
+        window.closeCookiePopup(event);
+    };
 
-    function closeCookiePopup(event) {
-        event.stopPropagation();
-        event.preventDefault();
+    // Close cookie popup (GLOBAL)
+    window.closeCookiePopup = function (event) {
+        if (event) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
 
         const cookieCard = document.getElementById('cookieCard');
         if (cookieCard) {
@@ -170,15 +173,15 @@ if (window !== window.parent) {
         if (!sessionStorage.getItem('einzweidinge')) {
             sessionStorage.setItem('einzweidinge', 'true');
         }
-    }
+    };
 
     // silly click nav thing
-    function goToBlogPost(url) {
+    window.goToBlogPost = function (url) {
         document.location.href = url;
-    }
+    };
 
     wp.domReady(() => {
-        if (!wp?.blocks) return; // <-- GUARD for editor iframe
+        if (!wp?.blocks) return;
 
         wp.blocks.unregisterBlockStyle('core/button', 'outline');
         wp.blocks.unregisterBlockStyle('core/button', 'fill');
