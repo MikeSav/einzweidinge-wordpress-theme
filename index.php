@@ -48,6 +48,15 @@
           <div class="blog__row blog__row--wrap">
             <?php
               if (have_posts()) {
+
+              $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+
+              query_posts([
+                  'post_type' => 'post',
+                  'paged' => $paged
+              ]);
+
+
                   while(have_posts()) {
               ?>
                 <div class="blog__card blog__card--wrap">
